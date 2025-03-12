@@ -1,8 +1,10 @@
 let display = document.getElementById('display');
 
 function addvalue(valor){
-    display.value += valor;
-}
+        display.value += valor
+    }
+    
+
 
 function clean(){ 
     display.value = '';
@@ -57,9 +59,37 @@ function backspace(){
         if(tipo == 'sin') display.value = Math.sin(radianos);
         else if(tipo == 'cos') display.value = Math.cos(radianos);
         else if (tipo == 'tan') display.value = Math.tan(radianos);
-    }
+     }
     else{
         display.value = 'Error';
+    }
+  }
+
+  function trigonometricInverse(tipo){
+    let valor = parseFloat(display.value);
+    if(!isNaN(valor)){
+        let resultado = 0;
+        switch (tipo){
+            case'asin':resultado = Math.asin(valor); break;
+            case'acos':resultado = Math.acos(valor); break;
+            case'atan':resultado = Math.atan(valor); break;
+
+        }
+        display.value =(resultado * ( 180/Math.PI)).toFixed(5); }
+        else display.value ='Error';
+  }
+        
+     
+
+  function trigonometricHyper(tipo){
+    let valor = parseFloat(display.value);
+    if(!isNaN(valor)){
+        if (tipo == 'sinh') display.value = Math.sinh(valor);
+        else if (tipo == 'cosh') display.value = Math.cosh(valor);
+        else if(tipo == 'tanh') display.value = Math.tanh(valor);
+         
+    }else{
+        display.value ='Error';
     }
   }
 
@@ -71,5 +101,6 @@ function backspace(){
     }else{
         display.value ='Error';
     }
+}
 
-   }
+   
