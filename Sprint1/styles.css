@@ -6,11 +6,11 @@ body{
     background: black;
     margin: 0;
 }
- h1{
+ h1{ 
     color:orangered;
     position: absolute;
-    top: 0;
-    left: 45%;
+    top: 10;
+    left: 20%;
     text-align: center;
 
 
@@ -18,8 +18,8 @@ body{
 
 .calculator{
     background:orangered;
-    color: #ff6347;
-    padding: 20px;
+    color:white;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
@@ -32,6 +32,7 @@ body{
     padding-right: 10px;
     border: none;
     border-radius: 5px;
+    background-color: lightsalmon;
 }
 .botoes{
     display: grid;
@@ -51,6 +52,6 @@ button{
 }
 
 button:hover{
-    background: black;
+    background: indigo;
 }
 
