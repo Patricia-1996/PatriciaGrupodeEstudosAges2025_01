@@ -103,4 +103,13 @@ function backspace(){
     }
 }
 
+function insertPI(){
+    display.value += Math.PI;
+
+}
+
+
+
+
+
    
