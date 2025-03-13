@@ -104,8 +104,15 @@ function backspace(){
 }
 
 function insertPI(){
-    display.value += Math.PI;
-
+    display.value *= Math.PI;
+    /*let valor = parseFloat(display.value);
+    if(!isNaN(valor)){
+        display.value = valor*Math.PI;
+    }
+    else{
+        display.value = 'Error';
+    }
+*/
 }
 
 
