@@ -1,4 +1,5 @@
 let display = document.getElementById('display');
+let memory = 0;
 
 function addvalue(valor){
         display.value += valor
@@ -103,18 +104,64 @@ function backspace(){
     }
 }
 
-function insertPI(){
-    display.value *= Math.PI;
-    /*let valor = parseFloat(display.value);
-    if(!isNaN(valor)){
-        display.value = valor*Math.PI;
+
+function factorial(){
+    let valor = parseInt(display.value);
+    if(!isNaN(valor) && valor>=0){
+        let resultado = 1;
+        for(let i = 1; i<=valor;i++){
+            resultado *= i;
+        }
+        display.value = resultado;
     }
     else{
-        display.value = 'Error';
+        display.value ='Error';
     }
-*/
 }
 
+function mod(){
+    let valores = display.value.split('%');
+
+    if(valores.length == 2){
+        let num1 = parseFloat(valores[0]);
+        let num2 = parseFloat(valores[1]);
+    }
+    if(!isNaN(num1)&& !isNaN(num2)&& num2 !== 0){
+        display.value = num1%num2;
+    }else{
+        display.value = 'Error';
+    }
+} 
+
+
+function memoryStore(){
+    let valor = parseFloat(display.value);
+    if(!isNaN(valor)){
+        memory = valor;
+    }
+}
+
+function memoryRecall(){
+    display.value += memory;
+}
+
+function memoryClear(){
+    memory = 0;
+}
+
+function memoryAdd(){
+    let valor = parseFloat(display.value);
+    if(!isNaN(valor)){
+        memory +=valor;
+    }
+}
+
+function memorySubstract(){
+    let valor = parseFloat(display.value);
+    if(!isNaN(valor)){
+        memory -= valor;
+    }
+}
 
 
 
