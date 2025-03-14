@@ -10,6 +10,7 @@
     <h1>Calculator</h1>
     <div class="calculator">
         <input type="text" id="display" disabled>
+      
     <div class = "botoes">
         <button onclick="memoryStore()">MS</button>
         <button onclick="memoryRecall()">MR</button>
@@ -17,6 +18,7 @@
         <button onclick="memoryAdd()">M+</button>
         <button onclick="memorySubstract()">M-</button>
         <button onclick="clean()">C</button>
+        
 
         <button onclick="addvalue('1')">1</button>
         <button onclick="addvalue('2')">2</button>
@@ -26,11 +28,22 @@
         <button onclick="addvalue('5')">5</button>
         <button onclick="addvalue('6')">6</button>
 
-        <button onclick="addvalue('+')">+</button>
         
         <button onclick="addvalue('7')">7</button>
         <button onclick="addvalue('8')">8</button>
         <button onclick="addvalue('9')">9</button>
+        <button onclick="addvalue('0')">0</button>
+        <button onclick="backspace()"> ⌫</button>
+
+        <button onclick="addvalue('(')">(</button>
+        <button onclick="addvalue(')')">)</button>
+        <button onclick="calculate()">=</button>
+
+        
+        <button onclick="addvalue('.')">.</button>
+
+        <button onclick="addvalue('+')">+</button>
+        
         <button onclick="addvalue('-')">-</button>
         
 
@@ -38,12 +51,11 @@
         <button onclick="addvalue('*')">*</button>
        
        
-        <button onclick="addvalue('0')">0</button>
-        <button onclick="calculate()">=</button>
-        <button onclick="backspace()"> ⌫</button>
-        <button onclick="addvalue('.')">.</button>
-        <button onclick="addvalue('(')">(</button>
-        <button onclick="addvalue(')')">)</button>
+        
+       
+        
+        
+        
         <button onclick="addvalue('3.1415926535897')">π</button>
         <button onclick="addvalue('2.7182818284590')">e</button>
         <button onclick="calcperc()">%</button>

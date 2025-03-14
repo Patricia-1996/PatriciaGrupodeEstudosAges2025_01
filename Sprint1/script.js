@@ -1,6 +1,7 @@
 let display = document.getElementById('display');
 let memory = 0;
 
+
 function addvalue(valor){
         display.value += valor
     }
