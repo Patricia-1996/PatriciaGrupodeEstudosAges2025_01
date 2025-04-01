@@ -1,5 +1,5 @@
 const express = require("express");
-const { PrismaClient } = require ("@prisma/client");
+const { PrismaClient } = require('./generated/prisma');
 
 const prisma  = new PrismaClient();
 const app = express();
@@ -9,12 +9,18 @@ app.use(express.json());
 
 app.post("/movies", async (req, res) => {
     const{title, description , director ,releaseYear, genre } = req.body;
-    const movie = await prisma.movie.create(
-        {data: {title, description, director, releaseYear, genre },
+    try{
+    const movie = await prisma.movie.create({
+            data: {title, description, director, releaseYear, genre },
 
         });
-        res.status(201).json(movie);
-})
+        res.status(201).json(movie);}
+        catch(error){
+            res.status(400).json({ error: "Erro ao criar o filme."});
+        }
+});
+
+
 
 
 //Listar filmes
