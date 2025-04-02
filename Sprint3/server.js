@@ -31,23 +31,8 @@ app.use(express.json());
         }
     });
 
-// Listar filmes com suas avaliações
-app.get("/movies", async (req, res) => {
-    try {
-        const movies = await prisma.movie.findMany({
-            include: {
-                reviews: true,
-            },
-        });
-        res.json(movies);
-    } catch (error) {
-        console.error("Erro ao listar os filmes:", error);
-        res.status(500).json({ error: "Erro ao listar os filmes." });
-    }
-});
-
-// Criar uma nova avaliação para um filme existente
-app.post("/movies/:movieId/reviews", async (req, res) => {
+    // Criar uma nova avaliação para um filme existente
+app.post("/movies-with-reviews/:movieId/reviews", async (req, res) => {
     const { movieId } = req.params;
     const { rating, comment } = req.body;
     try {
@@ -67,8 +52,39 @@ app.post("/movies/:movieId/reviews", async (req, res) => {
     }
 });
 
+
+// Listar filmes com suas avaliações
+app.get("/movies", async (req, res) => {
+    try {
+        const movies = await prisma.movie.findMany({
+            include: {
+                reviews: true,
+            },
+        });
+        res.json(movies);
+    } catch (error) {
+        console.error("Erro ao listar os filmes:", error);
+        res.status(500).json({ error: "Erro ao listar os filmes." });
+    }
+});
+
+
+// Ler todas as reviews de um filme específico
+app.get("/movies/:movieId/reviews", async (req, res) => {
+    const { movieId } = req.params;
+    try {
+        const reviews = await prisma.review.findMany({
+            where: { movieId: parseInt(movieId) },
+        });
+        res.json(reviews);
+    } catch (error) {
+        console.error("Erro ao buscar as reviews:", error);
+        res.status(500).json({ error: "Erro ao buscar as reviews." });
+    }
+});
+
 // Editar um filme existente
-app.put("/movies/:id", async (req, res) => {
+app.put("/movies-with-reviews/:id", async (req, res) => {
     const { id } = req.params;
     const { title, description, director, year, genre } = req.body;
     try {
@@ -99,7 +115,7 @@ app.put("/reviews/:id", async (req, res) => {
 });
 
 // Deletar um filme
-app.delete("/movies/:id", async (req, res) => {
+app.delete("/movies-with-reviews/:id", async (req, res) => {
     const { id } = req.params;
     try {
         await prisma.movie.delete({
@@ -109,20 +125,6 @@ app.delete("/movies/:id", async (req, res) => {
     } catch (error) {
         console.error("Erro ao deletar o filme:", error);
         res.status(500).json({ error: "Erro ao deletar o filme." });
-    }
-});
-
-// Ler todas as reviews de um filme específico
-app.get("/movies/:movieId/reviews", async (req, res) => {
-    const { movieId } = req.params;
-    try {
-        const reviews = await prisma.review.findMany({
-            where: { movieId: parseInt(movieId) },
-        });
-        res.json(reviews);
-    } catch (error) {
-        console.error("Erro ao buscar as reviews:", error);
-        res.status(500).json({ error: "Erro ao buscar as reviews." });
     }
 });
 
@@ -139,6 +141,10 @@ app.delete("/reviews/:id", async (req, res) => {
         res.status(500).json({ error: "Erro ao deletar a review." });
     }
 });
+
+
+
+
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
