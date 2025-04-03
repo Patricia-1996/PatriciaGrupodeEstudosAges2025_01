@@ -5,36 +5,36 @@ const prisma = new PrismaClient();
 const app = express();
 app.use(express.json());
 
-// Criar um filme com avaliações associadas
-    app.post("/movies-with-reviews", async (req, res) => {
-        const { title, description, director, year, genre, reviews } = req.body;
-        try {
-            const movie = await prisma.movie.create({
-                data: {
-                    title,
-                    description,
-                    director,
-                    year,
-                    genre,
-                    reviews: {
-                        create: reviews,
-                    },
+// Criar um filme com avaliações associadas (CORRIGIDO) *FUNCIONA
+app.post("/movies", async (req, res) => {
+    const { title, description, director, year, genre, reviews } = req.body;
+    try {
+        const movie = await prisma.movie.create({
+            data: {
+                title,
+                description,
+                director,
+                year,
+                genre,
+                reviews: {
+                    create: reviews,
                 },
-                include: {
-                    reviews: true,
-                },
-            });
-            res.status(201).json(movie);
-        } catch (error) {
-            console.error("Erro ao criar o filme com as avaliações:", error);
-            res.status(400).json({ error: "Erro ao criar o filme com as avaliações." });
-        }
-    });
+            },
+            include: {
+                reviews: true,
+            },
+        });
+        res.status(201).json(movie);
+    } catch (error) {
+        console.error("Erro ao criar  filme:", error);
+        res.status(400).json({ error: "Erro ao criar o filme." });
+    }
+});
 
-    // Criar uma nova avaliação para um filme existente
-app.post("/movies-with-reviews/:movieId/reviews", async (req, res) => {
+// Criar uma nova avaliação para um filme existente *FUNCIONA
+app.post("/movies/:movieId/reviews", async (req, res) => {
     const { movieId } = req.params;
-    const { rating, comment } = req.body;
+    const { rating, comment } = req.bodysql;
     try {
         const review = await prisma.review.create({
             data: {
@@ -52,8 +52,7 @@ app.post("/movies-with-reviews/:movieId/reviews", async (req, res) => {
     }
 });
 
-
-// Listar filmes com suas avaliações
+// Listar filmes com suas avaliações *FUNCIONA
 app.get("/movies", async (req, res) => {
     try {
         const movies = await prisma.movie.findMany({
@@ -68,8 +67,7 @@ app.get("/movies", async (req, res) => {
     }
 });
 
-
-// Ler todas as reviews de um filme específico
+// Ler todas as reviews de um filme específico *FUNCIONA
 app.get("/movies/:movieId/reviews", async (req, res) => {
     const { movieId } = req.params;
     try {
@@ -83,8 +81,8 @@ app.get("/movies/:movieId/reviews", async (req, res) => {
     }
 });
 
-// Editar um filme existente
-app.put("/movies-with-reviews/:id", async (req, res) => {
+// Editar um filme existente (CORRIGIDO)
+app.put("/movies/:id", async (req, res) => {
     const { id } = req.params;
     const { title, description, director, year, genre } = req.body;
     try {
@@ -98,6 +96,7 @@ app.put("/movies-with-reviews/:id", async (req, res) => {
         res.status(500).json({ error: "Erro ao atualizar o filme." });
     }
 });
+
 // Editar uma review existente
 app.put("/reviews/:id", async (req, res) => {
     const { id } = req.params;
@@ -114,8 +113,8 @@ app.put("/reviews/:id", async (req, res) => {
     }
 });
 
-// Deletar um filme
-app.delete("/movies-with-reviews/:id", async (req, res) => {
+// Deletar um filme (CORRIGIDO)
+app.delete("/movies/:id", async (req, res) => {
     const { id } = req.params;
     try {
         await prisma.movie.delete({
@@ -141,10 +140,6 @@ app.delete("/reviews/:id", async (req, res) => {
         res.status(500).json({ error: "Erro ao deletar a review." });
     }
 });
-
-
-
-
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
