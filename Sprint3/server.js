@@ -26,15 +26,15 @@ app.post("/movies", async (req, res) => {
         });
         res.status(201).json(movie);
     } catch (error) {
-        console.error("Erro ao criar  filme:", error);
-        res.status(400).json({ error: "Erro ao criar o filme." });
+        console.error("Erro ao criar o filme com as avaliações:", error);
+        res.status(400).json({ error: "Erro ao criar o filme com as avaliações." });
     }
 });
 
 // Criar uma nova avaliação para um filme existente *FUNCIONA
 app.post("/movies/:movieId/reviews", async (req, res) => {
     const { movieId } = req.params;
-    const { rating, comment } = req.bodysql;
+    const { rating, comment } = req.body;
     try {
         const review = await prisma.review.create({
             data: {
@@ -81,7 +81,7 @@ app.get("/movies/:movieId/reviews", async (req, res) => {
     }
 });
 
-// Editar um filme existente (CORRIGIDO)
+// Editar um filme existente (CORRIGIDO) *PUT FUNCIONA MUDANDO 1 TERMO POR VEZ
 app.put("/movies/:id", async (req, res) => {
     const { id } = req.params;
     const { title, description, director, year, genre } = req.body;
@@ -97,7 +97,7 @@ app.put("/movies/:id", async (req, res) => {
     }
 });
 
-// Editar uma review existente
+// Editar uma review existente FUNCIONA mudando 1 campo por vez
 app.put("/reviews/:id", async (req, res) => {
     const { id } = req.params;
     const { rating, comment } = req.body;
