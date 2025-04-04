@@ -113,12 +113,12 @@ app.put("/reviews/:id", async (req, res) => {
     }
 });
 
-// Deletar um filme (CORRIGIDO)
+// Deletar um filme 
 app.delete("/movies/:id", async (req, res) => {
     const { id } = req.params;
     try {
         await prisma.movie.delete({
-            where: { id: parseInt(id) },
+            where: { id: Number(id) }, include: { reviews: true}
         });
         res.status(204).send(); // No Content
     } catch (error) {
@@ -127,7 +127,7 @@ app.delete("/movies/:id", async (req, res) => {
     }
 });
 
-// Deletar uma review
+// Deletar uma review ->delete review/id do review e não do filme **FUNCIONA
 app.delete("/reviews/:id", async (req, res) => {
     const { id } = req.params;
     try {
