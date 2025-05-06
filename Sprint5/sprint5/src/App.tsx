@@ -4,7 +4,7 @@ import Hero from "./components/Hero";
 import Skills from "./components/Skills";
 import Project from "./components/Project";
 import About from "./components/About";
-import "./components;";
+import("tailwindcss");
 
 const App: React.FC = () => {
   return (
