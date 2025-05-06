@@ -1,12 +1,15 @@
-import Navbar from "./components/Navbar"; 
+impimport React from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import "./App.css";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="w-screen h-screen bg-black flex justify-center p-6">
+    <div className="App">
       <Navbar />
-      
-    <div/>
+      <Hero />
+    </div>
   );
-}
+};
 
 export default App;
