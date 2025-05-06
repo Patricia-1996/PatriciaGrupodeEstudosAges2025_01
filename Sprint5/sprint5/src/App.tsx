@@ -1,13 +1,19 @@
-impimport React from "react";
+import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import "./App.css";
+import Skills from "./components/Skills";
+import Project from "./components/Project";
+import About from "./components/About";
+import "./components;";
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <Navbar />
       <Hero />
+      <Skills />
+      <Project />
+      <About />
     </div>
   );
 };
