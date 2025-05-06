@@ -1,13 +1,11 @@
-import React from "react";
-import Navbar from "./Navbar"; // Caminho da importação corrigido
-import "./App.css";
+import Navbar from "./components/Navbar"; 
 
 function App() {
   return (
-    <>
+    <div className="w-screen h-screen bg-black flex justify-center p-6">
       <Navbar />
-      {/* Outros componentes da sua página */}
-    </>
+      
+    <div/>
   );
 }
 
