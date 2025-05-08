@@ -8,7 +8,8 @@ import About from "./components/About";
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Navbar />
+      {/* Passe o valor para githubUsername */}
+      <Navbar githubUsername="Patricia-1996" />
       <Hero />
       <Skills />
       <Project />

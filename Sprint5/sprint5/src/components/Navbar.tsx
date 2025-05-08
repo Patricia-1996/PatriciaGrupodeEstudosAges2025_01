@@ -1,33 +1,32 @@
 import React from "react";
 
-const Navbar: React.FC = () => {
-  const githubUsername = "Patricia-1996";
-  const linkedinUrl = ""; // Adicione seu LinkedIn URL aqui quando desbloqueado
+// Defina as props do componente Navbar
+interface NavbarProps {
+  githubUsername: string;
+  linkedinUrl?: string; // Opcional
+}
 
+const Navbar: React.FC<NavbarProps> = ({ githubUsername, linkedinUrl }) => {
   return (
-    <nav className="bg-black/70 text-pink-400 flex justify-between items-center px-8 py-4 fixed top-0 left-0 w-full z-10">
-      <div className="text-lg font-bold">PatriciaFrontEndDevPortfolio</div>
+    <nav className="bg-black bg-opacity-90 text-pink-400 flex justify-between items-center px-8 py-10 fixed top-0 left-0 w-full z-10">
+      {/* Espaço vazio para alinhar o texto central */}
+      <div className="flex space-x-4"></div>
+
+      {/* Texto centralizado */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 text-lg font-bold text-pink-400">
+        PatriciaFrontEndDevPortfolio
+      </div>
+
+      {/* Ícones alinhados à direita */}
       <div className="flex space-x-4">
-        <a href="#home" className="hover:text-pink-300">
-          {" "}
-          {/* Alterado para #home */}
+        <a href="#home" className="hover:text-pink-300 text-2xl">
           🏠
         </a>
-        {linkedinUrl && (
-          <a
-            href={linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-pink-300"
-          >
-            💼
-          </a>
-        )}
         <a
           href={`https://github.com/${githubUsername}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-pink-300"
+          className="hover:text-pink-300 text-2xl"
         >
           🐱
         </a>
