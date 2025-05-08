@@ -6,7 +6,7 @@ interface NavbarProps {
   linkedinUrl?: string; // Opcional
 }
 
-const Navbar: React.FC<NavbarProps> = ({ githubUsername, linkedinUrl }) => {
+const Navbar: React.FC<NavbarProps> = ({ githubUsername }) => {
   return (
     <nav className="bg-black bg-opacity-90 text-pink-400 flex justify-between items-center px-8 py-10 fixed top-0 left-0 w-full z-10">
       {/* Espaço vazio para alinhar o texto central */}
