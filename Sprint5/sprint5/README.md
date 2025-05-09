@@ -1,3 +1,13 @@
+
+Vercel:https://patricia-grupode-estudos-ages2025-01-o2ijd0fe2.vercel.app/
+
+
+
+
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
